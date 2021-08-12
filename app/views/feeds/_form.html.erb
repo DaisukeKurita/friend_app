@@ -1,12 +1,16 @@
-<%= form_with(model: @feed, local: true) do |form| %>
+<%= form_with(model: @feed, local: true, url:confirm_feeds_path) do |form| %>
   <div class="filed">
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
   <div class="filed">
     <%= form.label :image %>
+    <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
     <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
   </div>
-  <%= form.submit %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
 <%= link_to 'みんなの投稿をみよう！', feeds_path %>

@@ -1,7 +1,11 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy ]
   def new
-    @feed = Feed.new
+    if params[:back]
+      @feed = Feed.new(feed_params)
+    else
+      @feed = Feed.new
+    end
   end
 
   def index
@@ -10,7 +14,7 @@ class FeedsController < ApplicationController
 
   def create
     Feed.create(feed_params)
-    redirect_to new_feed_path
+    redirect_to feeds_path, notice: "投稿をしました！"
   end
 
   def show
@@ -30,6 +34,10 @@ class FeedsController < ApplicationController
   def destroy
     @feed.destroy
     redirect_to feeds_path, notice: "投稿を削除しました"
+  end
+
+  def confirm
+    @feed = Feed.new(feed_params)
   end
 
   private
