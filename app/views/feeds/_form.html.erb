@@ -1,0 +1,6 @@
+<%= form_with(model: @feed, local: true) do |form| %>
+  <div class="filed">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+<% end %>
