@@ -3,6 +3,10 @@ class FeedsController < ApplicationController
     @feed = Feed.new
   end
 
+  def index
+    @feeds = Feed.all
+  end
+
   def create
     Feed.create(feed_params)
     redirect_to new_feed_path

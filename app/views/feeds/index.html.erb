@@ -1,0 +1,13 @@
+<h1>みんなの投稿をみよう！</h1>
+<table>
+  <tr>
+    <th>Content</th>
+    <th>image</th>
+  </tr>
+<% @feeds.each do |feed| %>
+  <tr>
+    <td><%= feed.content %></td>
+    <td><%= image_tag feed.image.url %></td>
+  </tr>
+<% end %>
+</table>
