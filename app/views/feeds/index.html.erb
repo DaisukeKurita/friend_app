@@ -8,6 +8,7 @@
   <tr>
     <td><%= feed.content %></td>
     <td><%= image_tag feed.image.url %></td>
+    <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
   </tr>
 <% end %>
 </table>
