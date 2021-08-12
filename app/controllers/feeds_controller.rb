@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show, :edit ]
+  before_action :set_feed, only: [:show, :edit, :update ]
   def new
     @feed = Feed.new
   end
@@ -20,6 +20,11 @@ class FeedsController < ApplicationController
   end
 
   def update
+    if @feed.update(feed_params)
+      redirect_to feeds_path notice: "編集しました"
+    else
+      render :edit
+    end
   end
 
   private
