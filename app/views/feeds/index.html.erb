@@ -10,6 +10,7 @@
     <td><%= image_tag feed.image.url %></td>
     <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
     <td><%= link_to '投稿の編集をする', edit_feed_path(feed.id) %></td>
+    <td><%= link_to '投稿を削除する', feed_path(feed.id), method: :delete %></td>
   </tr>
 <% end %>
 </table>
