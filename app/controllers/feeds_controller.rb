@@ -13,8 +13,12 @@ class FeedsController < ApplicationController
   end
 
   def create
-    Feed.create(feed_params)
-    redirect_to feeds_path, notice: "投稿をしました！"
+    @feed = Feed.create(feed_params)
+    if @feed.save
+      redirect_to feeds_path, notice: "投稿をしました！"
+    else
+      render :new
+    end
   end
 
   def show
