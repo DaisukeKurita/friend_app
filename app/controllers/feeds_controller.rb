@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show]
+  before_action :set_feed, only: [:show, :edit ]
   def new
     @feed = Feed.new
   end
@@ -14,6 +14,12 @@ class FeedsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   private
