@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show, :edit, :update, :destroy ]
+  before_action :set_feed, only: [ :show, :edit, :update, :destroy ]
   def new
     if params[:back]
       @feed = Feed.new(feed_params)
@@ -21,6 +21,11 @@ class FeedsController < ApplicationController
   def show
   end
   def edit
+    if @feed.user_id == current_user.id
+      render "edit"
+    else
+      redirect_to feeds_path
+    end
   end
   def update
     if @feed.update(feed_params)
@@ -30,8 +35,12 @@ class FeedsController < ApplicationController
     end
   end
   def destroy
-    @feed.destroy
-    redirect_to feeds_path, notice: "投稿を削除しました"
+    if @feed.user_id == current_user.id
+      @feed.destroy
+      redirect_to feeds_path, notice: "投稿を削除しました"
+    else
+      redirect_to feeds_path
+    end
   end
   def confirm
     @feed = current_user.feeds.new(feed_params)
