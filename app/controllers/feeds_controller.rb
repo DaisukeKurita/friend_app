@@ -7,11 +7,9 @@ class FeedsController < ApplicationController
       @feed = Feed.new
     end
   end
-
   def index
     @feeds = Feed.all
   end
-
   def create
     @feed = Feed.create(feed_params)
     if @feed.save
@@ -20,13 +18,10 @@ class FeedsController < ApplicationController
       render :new
     end
   end
-
   def show
   end
-
   def edit
   end
-
   def update
     if @feed.update(feed_params)
       redirect_to feeds_path notice: "投稿を編集しました"
@@ -34,21 +29,17 @@ class FeedsController < ApplicationController
       render :edit
     end
   end
-
   def destroy
     @feed.destroy
     redirect_to feeds_path, notice: "投稿を削除しました"
   end
-
   def confirm
     @feed = Feed.new(feed_params)
   end
-
   private
   def feed_params
     params.require(:feed).permit(:content, :image, :image_cache)
   end
-
   def set_feed
     @feed = Feed.find(params[:id])
   end
