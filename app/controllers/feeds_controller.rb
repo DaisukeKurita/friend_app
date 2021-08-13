@@ -11,11 +11,11 @@ class FeedsController < ApplicationController
     @feeds = Feed.all
   end
   def create
-    @feed = Feed.create(feed_params)
+    @feed = current_user.feeds.new(feed_params)
     if @feed.save
       redirect_to feeds_path, notice: "投稿をしました！"
     else
-      render :new
+      render :new if @feed.invalid?
     end
   end
   def show
