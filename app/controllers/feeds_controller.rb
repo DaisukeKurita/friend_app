@@ -15,7 +15,7 @@ class FeedsController < ApplicationController
     if @feed.save
       redirect_to feeds_path, notice: "投稿をしました！"
     else
-      render :new if @feed.invalid?
+      render :new
     end
   end
   def show
@@ -34,7 +34,8 @@ class FeedsController < ApplicationController
     redirect_to feeds_path, notice: "投稿を削除しました"
   end
   def confirm
-    @feed = Feed.new(feed_params)
+    @feed = current_user.feeds.new(feed_params)
+    render :new if @feed.invalid?
   end
   private
   def feed_params
