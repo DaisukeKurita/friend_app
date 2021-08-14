@@ -1,8 +1,7 @@
-<h1>Sign up</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error")%> prohibited this
-            <%= @user.name %> from being saved:</h2>
+    <h2><%= pluralize(@user.errors.count, "error")%>
+            prohibited this<%= @user.name %> from being saved:</h2>
     <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,18 +9,31 @@
     </ul>
   </div>
 <% end %>
-<<main>
-  <%= form_with(model: @user, local:true ) do |f| %>
-  <div class="sign_up_form">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.submit "Create my account" %>
-    <div>
-  <% end %>
-</main>>
+<main class="sing_up">
+  <div class="">
+    <h1 class="sing_up_title">Sign up</h1>
+    <%= form_with(model: @user, local:true ) do |f| %>
+      <div class="sign_up_form ">
+        <div class="sing_up_name">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="sing_up_email">
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </div>
+        <div class="sing_up_password">
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </div>
+        <div class="sing_up_password_confirmation">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation %>
+        </div>
+        <div class="sing_up_submit">
+          <%= f.submit "Create my account", class: 'btn btn-primary' %>
+        </div>
+      <div>
+    <% end %>
+  </div>
+</main>
