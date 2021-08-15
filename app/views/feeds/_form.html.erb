@@ -1,26 +1,28 @@
-<%= form_with(model: @feed, local: true, url: choose_new_or_edit) do |form| %>
+<div class="main_feed">
+  <%= form_with(model: @feed, local: true, url: choose_new_or_edit) do |form| %>
   <% if @feed.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @feed.errors.count %>件のエラーがあります。</h2>
-      <ul>
-        <% @feed.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+  <div id="error_explanation">
+    <h2><%= @feed.errors.count %>件のエラーがあります。</h2>
+    <ul>
+      <% @feed.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
-  <div class="filed">
+  <main class="detail">
     <%= form.label :content %>
     <%= form.text_field :content %>
-  </div>
-  <div class="filed">
     <%= form.label :image %>
     <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-<%= link_to 'みんなの投稿をみよう！', feeds_path %>
+    <label class="detail">
+      <%= form.file_field :image %>
+      <%= form.hidden_field :image_cache %>
+    </label>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+    <% end %>
+    <%= link_to 'みんなの投稿をみよう！', feeds_path %>
+  </main>
+</div>

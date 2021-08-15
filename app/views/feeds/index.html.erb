@@ -1,20 +1,22 @@
-<h1>みんなの投稿をみよう！</h1>
-<table>
-  <tr>
-    <th>Content</th>
-    <th>image</th>
-  </tr>
-<% @feeds.each do |feed| %>
-  <tr>
-    <td><%= feed.content %></td>
-    <td><%= image_tag feed.image.url %></td>
-    <td><%= feed.user.name %></td>
-    <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
-    <% if feed.user_id == current_user.id %>
+<main class="post_list">
+  <h1>みんなの投稿をみよう！</h1>
+  <table>
+    <tr>
+      <th>Content</th>
+      <th>image</th>
+    </tr>
+    <% @feeds.each do |feed| %>
+    <tr>
+      <td><%= feed.content %></td>
+      <td><%= image_tag feed.image.url %></td>
+      <td><%= feed.user.name %></td>
+      <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
+      <% if feed.user_id == current_user.id %>
       <td><%= link_to '投稿の編集をする', edit_feed_path(feed.id) %></td>
       <td><%= link_to '投稿を削除する', feed_path(feed.id), method: :delete %></td>
+      <% end %>
+    </tr>
     <% end %>
-  </tr>
-<% end %>
-</table>
-<%= link_to '新しい投稿をする', new_feed_path %>
+  </table>
+  <%= link_to '新しい投稿をする', new_feed_path %>
+</main>
